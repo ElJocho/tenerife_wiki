@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "day_5",
+"features": [
+{ "type": "Feature", "properties": { "ele": 674.581055, "time": "2022\/03\/11 11:25:47.000", "name": "020", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.607383, 28.107324, 674.581055 ] } },
+{ "type": "Feature", "properties": { "ele": 673.85321, "time": "2022\/03\/11 11:26:05.000", "name": "021", "cmt": "-Stone-" }, "geometry": { "type": "Point", "coordinates": [ -16.607354, 28.107337, 673.85321 ] } },
+{ "type": "Feature", "properties": { "ele": 664.102661, "time": "2022\/03\/11 11:43:27.000", "name": "022", "cmt": "-Stone- Bridge" }, "geometry": { "type": "Point", "coordinates": [ -16.607275, 28.108545, 664.102661 ] } },
+{ "type": "Feature", "properties": { "ele": 42.557285, "time": "2022\/03\/11 13:00:54.000", "name": "023", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.523769, 28.05675, 42.557285 ] } },
+{ "type": "Feature", "properties": { "ele": 17.243118, "time": "2022\/03\/11 13:36:34.000", "name": "024", "cmt": "-Stone- hydrovulcanic" }, "geometry": { "type": "Point", "coordinates": [ -16.520816, 28.059727, 17.243118 ] } },
+{ "type": "Feature", "properties": { "ele": 98.466789, "time": "2022\/03\/11 16:20:42.000", "name": "025", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.493474, 28.102669, 98.466789 ] } },
+{ "type": "Feature", "properties": { "ele": 100.407578, "time": "2022\/03\/11 16:26:10.000", "name": "026", "cmt": "-Stone- Debris" }, "geometry": { "type": "Point", "coordinates": [ -16.494169, 28.103115, 100.407578 ] } }
+]
+}

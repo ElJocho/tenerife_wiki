@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "day_10",
+"features": [
+{ "type": "Feature", "properties": { "ele": 164.089554, "time": "2022\/03\/16 09:27:45.000", "name": "048", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.478668, 28.117332, 164.089554 ] } },
+{ "type": "Feature", "properties": { "ele": 143.01152, "time": "2022\/03\/16 09:47:58.000", "name": "049", "cmt": "-Trash- Unloading" }, "geometry": { "type": "Point", "coordinates": [ -16.486733, 28.124997, 143.01152 ] } },
+{ "type": "Feature", "properties": { "ele": 133.447556, "time": "2022\/03\/16 10:01:31.000", "name": "050", "cmt": "-Trash-  separation" }, "geometry": { "type": "Point", "coordinates": [ -16.488102, 28.125032, 133.447556 ] } },
+{ "type": "Feature", "properties": { "ele": 204.444794, "time": "2022\/03\/16 10:37:57.000", "name": "051", "cmt": "-Trash- mountain" }, "geometry": { "type": "Point", "coordinates": [ -16.495853, 28.126636, 204.444794 ] } },
+{ "type": "Feature", "properties": { "ele": 126.962723, "time": "2022\/03\/16 11:27:35.000", "name": "052", "cmt": "-Trash- Biogas" }, "geometry": { "type": "Point", "coordinates": [ -16.487682, 28.123274, 126.962723 ] } },
+{ "type": "Feature", "properties": { "ele": 127.951782, "time": "2022\/03\/16 11:35:15.000", "name": "053", "cmt": "-Trash- Compost" }, "geometry": { "type": "Point", "coordinates": [ -16.487949, 28.123988, 127.951782 ] } },
+{ "type": "Feature", "properties": { "ele": 128.614258, "time": "2022\/03\/16 11:48:09.000", "name": "054", "cmt": "-Trash- water" }, "geometry": { "type": "Point", "coordinates": [ -16.487886, 28.123454, 128.614258 ] } },
+{ "type": "Feature", "properties": { "ele": 167.168671, "time": "2022\/03\/16 12:39:48.000", "name": "055", "cmt": "-Stop- Solar wind" }, "geometry": { "type": "Point", "coordinates": [ -16.448369, 28.179738, 167.168671 ] } }
+]
+}

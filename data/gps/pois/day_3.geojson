@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "day_3",
+"features": [
+{ "type": "Feature", "properties": { "ele": 2326.775879, "time": "2022\/03\/09 09:04:40.000", "name": "002", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.624654, 28.255562, 2326.775879 ] } },
+{ "type": "Feature", "properties": { "ele": 3462.685059, "time": "2022\/03\/09 09:38:24.000", "name": "003", "cmt": "-Stone- Teide" }, "geometry": { "type": "Point", "coordinates": [ -16.638627, 28.270298, 3462.685059 ] } },
+{ "type": "Feature", "properties": { "ele": 3520.936523, "time": "2022\/03\/09 10:08:39.000", "name": "004", "cmt": "-Stone- Teide-Top" }, "geometry": { "type": "Point", "coordinates": [ -16.638627, 28.270285, 3520.93652299999985 ] } },
+{ "type": "Feature", "properties": { "ele": 2189.344238, "time": "2022\/03\/09 12:10:09.000", "name": "005", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.631197, 28.223988, 2189.344238 ] } }
+]
+}

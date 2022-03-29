@@ -1,0 +1,17 @@
+{
+"type": "FeatureCollection",
+"name": "day_1",
+"features": [
+{ "type": "Feature", "properties": { "ele": -15.404972, "time": "2022\/03\/07 11:07:29.000", "name": "001", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.374056, 28.297842, -15.404972 ] } },
+{ "type": "Feature", "properties": { "ele": -10.095809, "time": "2022\/03\/07 11:17:53.000", "name": "002", "cmt": "-Stone- Flankenkollaps" }, "geometry": { "type": "Point", "coordinates": [ -16.373374, 28.299367, -10.095809 ] } },
+{ "type": "Feature", "properties": { "ele": -10.403722, "time": "2022\/03\/07 11:34:17.000", "name": "003", "cmt": "-Plant- Sukkulentenbusch" }, "geometry": { "type": "Point", "coordinates": [ -16.373328, 28.29936, -10.403722 ] } },
+{ "type": "Feature", "properties": { "ele": 923.869141, "time": "2022\/03\/07 14:04:31.000", "name": "004", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.279624, 28.53199, 923.869141 ] } },
+{ "type": "Feature", "properties": { "ele": 904.545288, "time": "2022\/03\/07 14:43:07.000", "name": "005", "cmt": "-Plant- Loorbeerwald" }, "geometry": { "type": "Point", "coordinates": [ -16.280249, 28.532379, 904.545288 ] } },
+{ "type": "Feature", "properties": { "ele": 906.793945, "time": "2022\/03\/07 15:01:31.000", "name": "006", "cmt": "-Stone- anaga basalt" }, "geometry": { "type": "Point", "coordinates": [ -16.280214, 28.53238, 906.793945 ] } },
+{ "type": "Feature", "properties": { "ele": 1864.46814, "time": "2022\/03\/07 16:16:36.000", "name": "007", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.463908, 28.374042, 1864.46814 ] } },
+{ "type": "Feature", "properties": { "ele": 1864.710815, "time": "2022\/03\/07 16:18:59.000", "name": "008", "cmt": "-Plant- Kiefernwald" }, "geometry": { "type": "Point", "coordinates": [ -16.463955, 28.373979, 1864.710815 ] } },
+{ "type": "Feature", "properties": { "ele": 2073.942139, "time": "2022\/03\/07 17:04:55.000", "name": "009", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.490257, 28.333721, 2073.942139 ] } },
+{ "type": "Feature", "properties": { "ele": 2074.558105, "time": "2022\/03\/07 17:05:08.000", "name": "010", "cmt": "-Stone- Lapili" }, "geometry": { "type": "Point", "coordinates": [ -16.490244, 28.333707, 2074.558105 ] } },
+{ "type": "Feature", "properties": { "ele": 2083.608887, "time": "2022\/03\/07 17:42:13.000", "name": "011", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.565462, 28.295598, 2083.60888699999987 ] } }
+]
+}

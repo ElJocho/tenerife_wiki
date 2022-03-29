@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "day_8",
+"features": [
+{ "type": "Feature", "properties": { "ele": 310.329468, "time": "2022\/03\/14 11:06:48.000", "name": "038", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.704738, 28.025596, 310.329468 ] } },
+{ "type": "Feature", "properties": { "ele": 351.160583, "time": "2022\/03\/14 11:44:39.000", "name": "039", "cmt": "-Stop- Aussichtsplattform" }, "geometry": { "type": "Point", "coordinates": [ -16.507089, 28.406583, 351.160583 ] } },
+{ "type": "Feature", "properties": { "ele": 231.205215, "time": "2022\/03\/14 12:15:23.000", "name": "040", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.511181, 28.410666, 231.205215 ] } },
+{ "type": "Feature", "properties": { "ele": 241.692917, "time": "2022\/03\/14 12:42:27.000", "name": "041", "cmt": "-Hydro-" }, "geometry": { "type": "Point", "coordinates": [ -16.51028, 28.412704, 241.692917 ] } },
+{ "type": "Feature", "properties": { "ele": 246.115662, "time": "2022\/03\/14 13:20:12.000", "name": "042", "cmt": "-Hydro- gallery" }, "geometry": { "type": "Point", "coordinates": [ -16.509432, 28.41345, 246.115662 ] } },
+{ "type": "Feature", "properties": { "ele": 390.237518, "time": "2022\/03\/14 15:15:24.000", "name": "043", "cmt": "-Plant- botanical garden" }, "geometry": { "type": "Point", "coordinates": [ -16.524054, 28.389053, 390.237518 ] } }
+]
+}

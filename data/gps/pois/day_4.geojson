@@ -1,0 +1,19 @@
+{
+"type": "FeatureCollection",
+"name": "day_4",
+"features": [
+{ "type": "Feature", "properties": { "ele": 679.414307, "time": "2022\/03\/10 09:54:07.000", "name": "006", "cmt": "-Stone- Low viskosity Basalt" }, "geometry": { "type": "Point", "coordinates": [ -16.612855, 28.104965, 679.414307 ] } },
+{ "type": "Feature", "properties": { "ele": 604.535522, "time": "2022\/03\/10 11:09:57.000", "name": "007", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.606035, 28.10355, 604.535522 ] } },
+{ "type": "Feature", "properties": { "ele": 611.710815, "time": "2022\/03\/10 11:28:28.000", "name": "009", "cmt": "-Stone- Pyroclasic quarry" }, "geometry": { "type": "Point", "coordinates": [ -16.606933, 28.102833, 611.710815 ] } },
+{ "type": "Feature", "properties": { "ele": 401.723602, "time": "2022\/03\/10 12:23:16.000", "name": "010", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.603627, 28.088033, 401.723602 ] } },
+{ "type": "Feature", "properties": { "ele": 402.199463, "time": "2022\/03\/10 12:23:31.000", "name": "011", "cmt": "-Stone- layers" }, "geometry": { "type": "Point", "coordinates": [ -16.603618, 28.088024, 402.199463 ] } },
+{ "type": "Feature", "properties": { "ele": 927.853333, "time": "2022\/03\/10 13:14:26.000", "name": "012", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.815086, 28.293087, 927.853333 ] } },
+{ "type": "Feature", "properties": { "ele": 1009.00238, "time": "2022\/03\/10 14:26:32.000", "name": "013", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.826733, 28.300293, 1009.00238 ] } },
+{ "type": "Feature", "properties": { "ele": 1009.954102, "time": "2022\/03\/10 14:39:42.000", "name": "014", "cmt": "-Stone- Basaltschild" }, "geometry": { "type": "Point", "coordinates": [ -16.826938, 28.300481, 1009.954102 ] } },
+{ "type": "Feature", "properties": { "ele": 1086.493774, "time": "2022\/03\/10 15:25:34.000", "name": "015", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.772055, 28.330275, 1086.493774 ] } },
+{ "type": "Feature", "properties": { "ele": 1098.754272, "time": "2022\/03\/10 15:30:44.000", "name": "016", "cmt": "-Stone- Aa Lava" }, "geometry": { "type": "Point", "coordinates": [ -16.772961, 28.329391, 1098.754272 ] } },
+{ "type": "Feature", "properties": { "ele": 139.736435, "time": "2022\/03\/10 16:35:42.000", "name": "017", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.767876, 28.371348, 139.736435 ] } },
+{ "type": "Feature", "properties": { "ele": 139.512512, "time": "2022\/03\/10 16:35:56.000", "name": "018", "cmt": null }, "geometry": { "type": "Point", "coordinates": [ -16.767892, 28.371324, 139.512512 ] } },
+{ "type": "Feature", "properties": { "ele": 139.36322, "time": "2022\/03\/10 16:36:03.000", "name": "019", "cmt": "-Stone- Lava X Beach" }, "geometry": { "type": "Point", "coordinates": [ -16.767886, 28.37133, 139.36322 ] } }
+]
+}

@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "day_2",
+"features": [
+{ "type": "Feature", "properties": { "ele": 914.669067, "time": "2022\/03\/08 10:40:07.000", "name": "012", "cmt": "-Stop- Meetingspot" }, "geometry": { "type": "Point", "coordinates": [ -16.285907, 28.530316, 914.669067 ] } },
+{ "type": "Feature", "properties": { "ele": 826.839294, "time": "2022\/03\/08 11:03:43.000", "name": "013", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.312879, 28.53568, 826.839294 ] } },
+{ "type": "Feature", "properties": { "ele": 826.979248, "time": "2022\/03\/08 11:06:58.000", "name": "014", "cmt": "-Plant- Sekundärwald" }, "geometry": { "type": "Point", "coordinates": [ -16.313528, 28.535732, 826.979248 ] } },
+{ "type": "Feature", "properties": { "ele": 780.745667, "time": "2022\/03\/08 12:05:45.000", "name": "015", "cmt": "-Plant- Kiefer" }, "geometry": { "type": "Point", "coordinates": [ -16.31736, 28.532982, 780.745667 ] } },
+{ "type": "Feature", "properties": { "ele": 780.605713, "time": "2022\/03\/08 12:09:22.000", "name": "016", "cmt": "-Soil- Loorbeerwald" }, "geometry": { "type": "Point", "coordinates": [ -16.317354, 28.532901, 780.605713 ] } },
+{ "type": "Feature", "properties": { "ele": 720.040161, "time": "2022\/03\/08 13:11:36.000", "name": "017", "cmt": "-Plant- Aufforstung" }, "geometry": { "type": "Point", "coordinates": [ -16.328194, 28.533303, 720.040161 ] } },
+{ "type": "Feature", "properties": { "ele": 720.180115, "time": "2022\/03\/08 13:29:20.000", "name": "018", "cmt": "-Soil-" }, "geometry": { "type": "Point", "coordinates": [ -16.328228, 28.5331, 720.180115 ] } }
+]
+}

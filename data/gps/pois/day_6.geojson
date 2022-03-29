@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "day_6",
+"features": [
+{ "type": "Feature", "properties": { "ele": 11.178169, "time": "2022\/03\/12 13:44:59.000", "name": "027", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.726654, 28.068647, 11.178169 ] } },
+{ "type": "Feature", "properties": { "ele": 9.741242, "time": "2022\/03\/12 16:59:30.000", "name": "028", "cmt": "-Stone- Sahara Deposit" }, "geometry": { "type": "Point", "coordinates": [ -16.726794, 28.052582, 9.741242 ] } }
+]
+}

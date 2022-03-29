@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"name": "day_7",
+"features": [
+{ "type": "Feature", "properties": { "ele": 2234.420898, "time": "2022\/03\/13 11:42:13.000", "name": "029", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.671612, 28.200471, 2234.42089799999985 ] } },
+{ "type": "Feature", "properties": { "ele": 2137.195068, "time": "2022\/03\/13 12:15:36.000", "name": "030", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.665434, 28.191309, 2137.195068 ] } },
+{ "type": "Feature", "properties": { "ele": 1835.412476, "time": "2022\/03\/13 12:56:26.000", "name": "031", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.646736, 28.172389, 1835.412476 ] } },
+{ "type": "Feature", "properties": { "ele": 1526.687866, "time": "2022\/03\/13 13:21:32.000", "name": "032", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.636441, 28.16519, 1526.687866 ] } },
+{ "type": "Feature", "properties": { "ele": 1409.4104, "time": "2022\/03\/13 13:41:47.000", "name": "033", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.640165, 28.153111, 1409.4104 ] } },
+{ "type": "Feature", "properties": { "ele": 1064.240112, "time": "2022\/03\/13 14:02:22.000", "name": "034", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.665825, 28.118583, 1064.240112 ] } },
+{ "type": "Feature", "properties": { "ele": 786.58667, "time": "2022\/03\/13 14:19:45.000", "name": "035", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.684353, 28.111254, 786.58667 ] } },
+{ "type": "Feature", "properties": { "ele": 303.042206, "time": "2022\/03\/13 14:43:58.000", "name": "036", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.691293, 28.073863, 303.042206 ] } },
+{ "type": "Feature", "properties": { "ele": 48.379639, "time": "2022\/03\/13 15:17:57.000", "name": "037", "cmt": "-Data-" }, "geometry": { "type": "Point", "coordinates": [ -16.698671, 28.023721, 48.379639 ] } }
+]
+}

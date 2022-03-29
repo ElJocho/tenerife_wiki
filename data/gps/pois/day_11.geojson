@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "day_11",
+"features": [
+{ "type": "Feature", "properties": { "ele": 107.312286, "time": "2022\/03\/17 11:38:00.000", "name": "056", "cmt": "-Stone- welded ingninbrite" }, "geometry": { "type": "Point", "coordinates": [ -16.470901, 28.116447, 107.312286 ] } },
+{ "type": "Feature", "properties": { "ele": 37.0895, "time": "2022\/03\/17 12:01:59.000", "name": "057", "cmt": "-Stone- ingninbrite arch" }, "geometry": { "type": "Point", "coordinates": [ -16.472835, 28.115635, 37.0895 ] } },
+{ "type": "Feature", "properties": { "ele": 78.592415, "time": "2022\/03\/17 13:18:21.000", "name": "058", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.839246, 28.245701, 78.592415 ] } },
+{ "type": "Feature", "properties": { "ele": 18.176188, "time": "2022\/03\/17 14:38:11.000", "name": "059", "cmt": "-Stone- gigantes" }, "geometry": { "type": "Point", "coordinates": [ -16.841216, 28.246797, 18.176188 ] } },
+{ "type": "Feature", "properties": { "ele": 1133.100586, "time": "2022\/03\/17 16:49:59.000", "name": "060", "cmt": "-Stop- eco" }, "geometry": { "type": "Point", "coordinates": [ -16.79668, 28.319068, 1133.100586 ] } },
+{ "type": "Feature", "properties": { "ele": 1130.012085, "time": "2022\/03\/17 16:56:23.000", "name": "061", "cmt": "-Agro- Museum" }, "geometry": { "type": "Point", "coordinates": [ -16.798284, 28.319329, 1130.012085 ] } }
+]
+}

@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "day_9",
+"features": [
+{ "type": "Feature", "properties": { "ele": 887.544739, "time": "2022\/03\/15 10:32:40.000", "name": "044", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.295299, 28.530161, 887.544739 ] } },
+{ "type": "Feature", "properties": { "ele": 918.821228, "time": "2022\/03\/15 12:49:29.000", "name": "045", "cmt": "-Soil-" }, "geometry": { "type": "Point", "coordinates": [ -16.299835, 28.534757, 918.821228 ] } },
+{ "type": "Feature", "properties": { "ele": 1482.44165, "time": "2022\/03\/15 15:44:17.000", "name": "046", "cmt": "-Stop-" }, "geometry": { "type": "Point", "coordinates": [ -16.638759, 28.158673, 1482.44165 ] } },
+{ "type": "Feature", "properties": { "ele": 1482.581665, "time": "2022\/03\/15 15:44:30.000", "name": "047", "cmt": "-Soil-" }, "geometry": { "type": "Point", "coordinates": [ -16.638742, 28.158672, 1482.581665 ] } }
+]
+}
