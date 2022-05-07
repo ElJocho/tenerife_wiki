@@ -1,0 +1,24 @@
+version: "3.5"
+services:
+  tenerife_db:
+    container_name: tenerife_db
+    build:
+      context: database/
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: tenerife_db
+      POSTGRES_USER: tenerife_db
+      POSTGRES_PASSWORD: basaltic
+    ports:
+      - "5446:5432"
+    networks:
+      - tenerife_db
+    volumes:
+      - tenerife-pg_data:/var/lib/postgresql/data
+
+networks:
+  tenerife_db:
+
+volumes:
+  tenerife-pg_data:
+
