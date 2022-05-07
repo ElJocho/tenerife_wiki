@@ -28,7 +28,7 @@ sudo pip3 install virtualenv
 
 In new folder:
 ```
-git clone https://gitlab.com/ebertkurt/ideenwettberwerb.git
+git clone https://github.com/ElJocho/tenerife_wiki.git
 # für dockersetup:
 docker-compose -f docker-compose.dev.yaml up -d --build --force-recreate
 # rest für commandline setup
@@ -59,7 +59,7 @@ https://docs.microsoft.com/de-de/windows/wsl/install-win10#step-4---download-the
 
 In new folder:
 
-```git clone https://gitlab.com/ebertkurt/ideenwettberwerb.git```  
+```git clone https://github.com/ElJocho/tenerife_wiki.git```  
 
 Delete from web_master/Dockerfile the following part:
 ```
