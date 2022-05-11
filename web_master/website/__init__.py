@@ -47,7 +47,7 @@ def create_database(app, Location, Route):
 def import_locations(Location, app):
     with app.app_context():
         if not Location.query.first():
-            directory = './data/gps/pois/'
+            directory = '../data/gps/pois/'
             for file in listdir(directory):
                 if file.endswith('.geojson'):
                     with open(directory + file) as f:
@@ -56,7 +56,7 @@ def import_locations(Location, app):
                         new_location = Location(name=(data["name"]+'_'+feature['properties']['name']),
                                                 elevation=feature['properties']['ele'],
                                                 category=feature['properties']['cmt'],  # the tag e.g. -Stone-
-                                                geojson=feature["geometry"],
+                                                geojson=json.dumps(feature["geometry"]),
                                                 date=feature['properties']['time'])
                         db.session.add(new_location)
                         db.session.commit()
@@ -65,15 +65,14 @@ def import_locations(Location, app):
 def import_routes(Route, app):
     with app.app_context():
         if not Route.query.first():
-            directory = './data/gps/tracks/'
+            directory = '../data/gps/tracks/'
             for file in listdir(directory):
                 if file.endswith('.geojson'):
                     with open(directory + file) as f:
                         data = json.load(f)
                     for feature in data["features"]:
                         new_route = Route(name=feature['properties']['name'],
-                                          geojson=feature["geometry"],
-                                          date=feature['properties']['time'])
+                                          geojson=json.dumps(feature["geometry"]))
                         db.session.add(new_route)
                         db.session.commit()
 
