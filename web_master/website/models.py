@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
 class Location(db.Model):
     """Locations on the map"""
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))  # day and poi number
     caption = db.Column(db.String(50))
     text = db.Column(db.String(500))
     elevation = db.Column(db.Float)
@@ -46,5 +47,5 @@ class Entry(db.Model):
 class Route(db.Model):
     """Travel Routes per day"""
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))  # day
     geojson = db.Column(db.String())
-    date = db.Column(db.DateTime(timezone=True), default=func.now())

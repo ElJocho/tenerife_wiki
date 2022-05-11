@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path, getenv
+from os import path, getenv, listdir
 from flask_login import LoginManager
 from werkzeug.security import generate_password_hash
+import json
 
 db = SQLAlchemy()
 
@@ -30,15 +31,50 @@ def create_app(conn_string):
     def load_user(id):
         return User.query.get(int(id))
 
-    create_database(app)
+    create_database(app, Location, Route)
     create_superuser(User, app)
     return app
 
 
-def create_database(app):
+def create_database(app, Location, Route):
     if not path.exists('website/' + "tenerife"):
         db.create_all(app=app)
+        import_locations(Location, app)
+        import_routes(Route, app)
         print("Successfully created DB")
+
+
+def import_locations(Location, app):
+    with app.app_context():
+        if not Location.query.first():
+            directory = '../data/gps/pois/'
+            for file in listdir(directory):
+                if file.endswith('.geojson'):
+                    with open(directory + file) as f:
+                        data = json.load(f)
+                    for feature in data["features"]:
+                        new_location = Location(name=(data["name"]+'_'+feature['properties']['name']),
+                                                elevation=feature['properties']['ele'],
+                                                category=feature['properties']['cmt'],  # the tag e.g. -Stone-
+                                                geojson=json.dumps(feature["geometry"]),
+                                                date=feature['properties']['time'])
+                        db.session.add(new_location)
+                        db.session.commit()
+
+
+def import_routes(Route, app):
+    with app.app_context():
+        if not Route.query.first():
+            directory = '../data/gps/tracks/'
+            for file in listdir(directory):
+                if file.endswith('.geojson'):
+                    with open(directory + file) as f:
+                        data = json.load(f)
+                    for feature in data["features"]:
+                        new_route = Route(name=feature['properties']['name'],
+                                          geojson=json.dumps(feature["geometry"]))
+                        db.session.add(new_route)
+                        db.session.commit()
 
 
 def create_superuser(User, app):
