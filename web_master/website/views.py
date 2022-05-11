@@ -28,9 +28,9 @@ def home():
 
 @login_required
 @views.route('/delete-entry', methods=["POST"])
-def delete_target():
-    target_data = json.loads(request.data)
-    id = target_data["id"]
+def delete_entry():
+    entry_data = json.loads(request.data)
+    id = entry_data["id"]
     target = Entry.query.get(id)
     if target:
         if target.user_id == current_user.id or current_user.superuser is True:

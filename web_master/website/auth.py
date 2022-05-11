@@ -13,22 +13,21 @@ auth = Blueprint("auth ", __name__)
 
 @auth.route('/login', methods=["GET", "POST"])
 def login():
+    errorMessage = ""
     if request.method == "POST":
         data = request.form
         password = data.get('password')
         username = data.get('username')
-
         user = User.query.filter_by(username=username).first()
         if user:
             if check_password_hash(user.password, password):
-                flash("Login erfolgreich", category="success")
                 login_user(user, remember=True)
                 return redirect(url_for("views.landing_page"))
             else:
-                flash("Falsches Passwort, erneut versuchen", category="error")
+                errorMessage="Falsches Passwort, erneut versuchen"
         else:
-            flash("Keinen Nutzer mit dieser Email gefunden", category="error")
-    return render_template("login.html", user=current_user)
+            errorMessage="Keinen Nutzer mit dieser Email gefunden"
+    return render_template("login.html", user=current_user, errorMessage=errorMessage)
 
 
 @auth.route('/logout')
