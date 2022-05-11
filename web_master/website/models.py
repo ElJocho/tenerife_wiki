@@ -33,6 +33,7 @@ class Location(db.Model):
 class Entry(db.Model):
     """Entries -> Extra photos for location with image, title and description."""
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))  # day and poi number
     title = db.Column(db.String(30))
     text = db.Column(db.String(500))
     category = db.Column(db.String(30))
@@ -46,5 +47,6 @@ class Entry(db.Model):
 class Route(db.Model):
     """Travel Routes per day"""
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))  # day
     geojson = db.Column(db.String())
     date = db.Column(db.DateTime(timezone=True), default=func.now())
