@@ -32,7 +32,6 @@ def create_app(conn_string):
 
     create_database(app)
     create_superuser(User, app)
-    create_routes(Route,app)
     return app
 
 
@@ -41,9 +40,6 @@ def create_database(app):
         db.create_all(app=app)
         print("Successfully created DB")
 
-
-def create_routes(Route, app):
-    db.query(Route).first()
 
 def create_superuser(User, app):
     """Automatically create a superuser which has special privileges."""
