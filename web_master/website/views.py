@@ -55,6 +55,7 @@ def location_site():
         entries=entries,
     )
 
+
 @login_required
 @views.route("/new-entry", methods=["POST"])
 def new_idea_l1():
