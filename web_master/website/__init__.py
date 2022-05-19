@@ -4,6 +4,8 @@ from os import path, getenv, listdir
 from flask_login import LoginManager
 from werkzeug.security import generate_password_hash
 import json
+import pandas as pd
+import datetime
 
 db = SQLAlchemy()
 
@@ -21,7 +23,7 @@ def create_app(conn_string):
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Entry, Location, Route
+    from .models import User, Entry, Location, Route, Vegetation
 
     login_manager = LoginManager()
     login_manager.login_view = 'views.landing_page'
@@ -31,16 +33,17 @@ def create_app(conn_string):
     def load_user(id):
         return User.query.get(int(id))
 
-    create_database(app, Location, Route)
+    create_database(app, Location, Route, Vegetation)
     create_superuser(User, app)
     return app
 
 
-def create_database(app, Location, Route):
+def create_database(app, Location, Route, Vegetation):
     if not path.exists('website/' + "tenerife"):
         db.create_all(app=app)
         import_locations(Location, app)
         import_routes(Route, app)
+        import_vegetation(Vegetation, app)
         print("Successfully created DB")
 
 
@@ -74,6 +77,47 @@ def import_routes(Route, app):
                         new_route = Route(name=feature['properties']['name'],
                                           geojson=json.dumps(feature["geometry"]))
                         db.session.add(new_route)
+                        db.session.commit()
+
+
+def import_vegetation(Vegetation, app):
+    with app.app_context():
+        if not Vegetation.query.first():
+            directory = '../data/plants/'
+            for file in listdir(directory):
+                if file.endswith('.csv'):
+                    df = pd.read_csv(directory+file, sep=';', header=0)
+                    df = df.reset_index()
+                    for index, row in df.iterrows():
+                        imagelist = row['images'].splitlines(0)
+                        imagedict = {}
+                        for element in imagelist:
+                            data = element.split()
+                            imagedict[data[1][1:-1]] = data[0]
+                        coordinateslist = [float(row['longitude'].replace(",", ".")), float(row['latitude'].replace(",", "."))]
+                        jsondict = {'type': 'Point', 'coordinates': coordinateslist}
+
+                        new_vegetation = Vegetation(
+                            id=row['id'],
+                            geojson=json.dumps(jsondict),
+                            url=row['URL'],
+                            author=row['author'],
+                            author_url=row['author URL'],
+                            date=datetime.datetime.fromtimestamp(row['date observed (timestamp milliseconds)'] / 1000.0, tz=datetime.timezone.utc),
+                            project=row['project'],
+                            current_name=row['current name'],
+                            original_name=row['original name'],
+                            family=row['family'],
+                            valid=row['valid'],
+                            license=row['license'],
+                            comments=row['comments'],
+                            image_bark=imagedict.get('bark'),
+                            image_fruit=imagedict.get('fruit'),
+                            image_habit=imagedict.get('habit'),
+                            image_leaf=imagedict.get('leaf'),
+                            image_flower=imagedict.get('flower'),
+                            zone=row['zone'])
+                        db.session.add(new_vegetation)
                         db.session.commit()
 
 
