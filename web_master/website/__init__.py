@@ -62,7 +62,7 @@ def import_locations(Location, app):
                                                 geojson=json.dumps(feature["geometry"]),
                                                 date=feature['properties']['time'])
                         db.session.add(new_location)
-                        db.session.commit()
+            db.session.commit()
 
 
 def import_routes(Route, app):
@@ -77,7 +77,7 @@ def import_routes(Route, app):
                         new_route = Route(name=feature['properties']['name'],
                                           geojson=json.dumps(feature["geometry"]))
                         db.session.add(new_route)
-                        db.session.commit()
+            db.session.commit()
 
 
 def import_vegetation(Vegetation, app):
@@ -102,15 +102,9 @@ def import_vegetation(Vegetation, app):
                             geojson=json.dumps(jsondict),
                             url=row['URL'],
                             author=row['author'],
-                            author_url=row['author URL'],
-                            date=datetime.datetime.fromtimestamp(row['date observed (timestamp milliseconds)'] / 1000.0, tz=datetime.timezone.utc),
-                            project=row['project'],
+                            date=row['date observed'],
                             current_name=row['current name'],
-                            original_name=row['original name'],
                             family=row['family'],
-                            valid=row['valid'],
-                            license=row['license'],
-                            comments=row['comments'],
                             image_bark=imagedict.get('bark'),
                             image_fruit=imagedict.get('fruit'),
                             image_habit=imagedict.get('habit'),
@@ -118,7 +112,7 @@ def import_vegetation(Vegetation, app):
                             image_flower=imagedict.get('flower'),
                             zone=row['zone'])
                         db.session.add(new_vegetation)
-                        db.session.commit()
+            db.session.commit()
 
 
 def create_superuser(User, app):
