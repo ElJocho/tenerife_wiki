@@ -76,3 +76,18 @@ class Route(db.Model):
         d = Serializer.serialize(self)
         return d
 
+
+class Vegetation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.String(500))
+    author = db.Column(db.String(30))
+    date = db.Column(db.Date(), default=func.now())
+    current_name = db.Column(db.String(75))
+    family = db.Column(db.String(30))
+    geojson = db.Column(db.String())
+    image_bark = db.Column(db.String(500))
+    image_fruit = db.Column(db.String(500))
+    image_habit = db.Column(db.String(500))
+    image_leaf = db.Column(db.String(500))
+    image_flower = db.Column(db.String(500))
+    zone = db.Column(db.String(50))
