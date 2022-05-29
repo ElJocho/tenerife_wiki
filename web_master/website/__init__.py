@@ -30,6 +30,10 @@ def create_app(conn_string):
     login_manager.login_view = 'views.landing_page'
     login_manager.init_app(app)
 
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        db.session.remove()
+
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
@@ -95,3 +99,5 @@ def create_superuser(User, app):
             )
             db.session.add(superuser)
             db.session.commit()
+
+

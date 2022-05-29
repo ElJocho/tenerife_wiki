@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block import %}<script defer type="text/javascript" src="{{ url_for('static', filename='js/sign-up.js') }}"></script>{% endblock %}
+
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="section light_pink" style="position: relative; top: -15px;">
+    <form method="post" id="sign-up" class="flex-column section-small">
+        <h2>Erstelle ein neues Konto</h2>
+        <h3>Danach kann es los gehen!</h3>
+        <div class="flex-row full-width">
+            <input class="one_thirds form-field" type="text" id="username" name="username" placeholder="Nutzernamen eingeben" required="required"/>
+            <input class="one_thirds form-field" type="text" id="vorname" name="vorname" placeholder="Vorname eingeben"/>
+            <input class="one_thirds form-field" type="text" id="name" name="name" placeholder="Nachname eingeben"/>    
+        </div>
+        <div class="flex-row full-width">
+            <input class="one_thirds form-field" type="password" id="password1" name="password1" placeholder="Passwort eingeben" required="required"/>
+            <input class="one_thirds form-field" type="password" id="password2" name="password2" placeholder="Passwort erneut eingeben" required="required"/>
+        </div>
+        <div class="full-width"><p id="pw_message" style="color:darkred; text-align: center;">&#x200B</p></div>
+
+        <button type="submit" class="hero-button">Los geht's!</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,171 @@
+/*Styles for animated top navigation*/
+nav {
+  margin-left: 50px;
+}
+
+input#anim-menu {
+  display: none;
+}
+
+.anim-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+}
+
+label.anim-icon {
+  z-index: 1200;
+}
+
+.anim-icon .anim-menu,
+.anim-icon .anim-menu::before,
+.anim-icon .anim-menu::after {
+  background: #670032;
+  content: "";
+  display: block;
+  height: 2px;
+  position: absolute;
+  transition: background ease 0.3s, top ease 0.3s 0.3s, transform ease 0.3s;
+  width: 20px;
+}
+.anim-icon .anim-menu.special,
+.anim-icon .anim-menu.special::before,
+.anim-icon .anim-menu.special::after {
+  background: #fff;
+}
+
+.anim-icon .anim-menu::before {
+  top: -6px;
+}
+
+.anim-icon .anim-menu::after {
+  top: 6px;
+}
+
+#anim-menu:checked + .anim-icon .anim-menu {
+  background: transparent;
+}
+
+#anim-menu:checked + .anim-icon .anim-menu::before {
+  transform: rotate(45deg);
+}
+
+#anim-menu:checked + .anim-icon .anim-menu::after {
+  transform: rotate(-45deg);
+}
+
+#anim-menu:checked + .anim-icon .anim-menu::before,
+#anim-menu:checked + .anim-icon .anim-menu::after {
+  top: 0;
+  transition: top ease 0.3s, transform ease 0.3s 0.3s;
+}
+
+.anim-icon {
+  display: none;
+}
+.anim-nav {
+  z-index: 900;
+  overflow: hidden;
+  width: 100%;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 0px;
+  transition: max-height ease 0.5s;
+  top: 8vh;
+  position: fixed;
+}
+.anim-nav a {
+  align-self: center;
+  text-align: center;
+  font-size: 3rem;
+  line-height: 5rem;
+  display: block;
+  text-align: center;
+}
+#anim-menu:checked ~ .anim-nav {
+  display: block;
+  position: fixed;
+  left: 0;
+  z-index: 900;
+  max-height: 500px;
+}
+
+.anim-icon {
+  display: flex;
+}
+
+.navlink {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: black;
+}
+.navlink:visited {
+  color: black;
+}
+
+@media screen and (max-width: 479px) {
+  .navlink {
+    font-size: 18px;
+  }
+}
+
+.navlink:hover {
+  text-decoration: none;
+  background-color: #f8f8f8;
+}
+
+header {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 10vh;
+  z-index: 1000;
+  background-color: #fff;
+  color: #670032;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  transition: color ease 0.5s;
+  transition: background-color ease 0.5s;
+  box-shadow: #670032 1.95px 1.95px 2.6px;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+header:hover {
+  color: #fff;
+  background-color: #670032;
+}
+
+.profile-div {
+  background: url("../icons/profile.png") bottom center no-repeat;
+  background-size: contain;
+  filter: invert(8%) sepia(76%) saturate(4001%) hue-rotate(317deg)
+    brightness(94%) contrast(108%);
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  margin-right: 50px;
+  cursor: pointer;
+  transition-delay: 0.1s;
+}
+
+.profile-div.special {
+  filter: invert(100%) sepia(0%) saturate(7481%) hue-rotate(260deg)
+    brightness(106%) contrast(97%);
+}
+
+.header-link {
+  cursor: pointer;
+}

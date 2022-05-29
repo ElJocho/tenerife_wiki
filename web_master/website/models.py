@@ -1,7 +1,24 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from sqlalchemy.inspection import inspect
+
 """Hier liegen alle Datenbankschema, heißt Tabellen auf die zugegriffen werden kann."""
+
+
+class Serializer(object):
+    def serialize(self):
+        l = {}
+        for key in inspect(self).attrs.keys():
+            value = getattr(self, key)
+            if isinstance(value, bytes):
+                value = str(value, encoding='utf-8')
+            l[key] = value
+        return l
+
+    @staticmethod
+    def serialize_list(l):
+        return [m.serialize() for m in l]
 
 
 class User(db.Model, UserMixin):
@@ -17,7 +34,7 @@ class User(db.Model, UserMixin):
     entries = db.relationship('Entry')
 
 
-class Location(db.Model):
+class Location(db.Model, Serializer):
     """Locations on the map"""
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))  # day and poi number
@@ -29,12 +46,15 @@ class Location(db.Model):
     image = db.Column(db.LargeBinary)
     image_data_type = db.Column(db.String(10))
     date = db.Column(db.DateTime(timezone=True), default=func.now()) # todo: these should not use default, but their actual date
+    def serialize(self):
+        d = Serializer.serialize(self)
+        return d
 
 
 class Entry(db.Model):
     """Entries -> Extra photos for location with image, title and description."""
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(30))
+    title = db.Column(db.String(18))
     text = db.Column(db.String(500))
     category = db.Column(db.String(30))
     image = db.Column(db.LargeBinary)
@@ -42,6 +62,9 @@ class Entry(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     location_id = db.Column(db.Integer, db.ForeignKey("location.id"))
+    def serialize(self):
+        d = Serializer.serialize(self)
+        return d
 
 
 class Route(db.Model):
@@ -49,3 +72,7 @@ class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))  # day
     geojson = db.Column(db.String())
+    def serialize(self):
+        d = Serializer.serialize(self)
+        return d
+

@@ -4,7 +4,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-from sqlalchemy import or_
+from sqlalchemy import or_, update
 from .python_utils.files import cleanup_image, allowed_file, ALLOWED_IMAGE_EXTENSIONS
 
 """Alles rund um User Account Management. Hier werden die backend-endpoints erstellt."""
@@ -83,27 +83,37 @@ def profile():
     u_id = request.args.get('u_id')
     if u_id is None:
         u_id = current_user.id
-    if request.method == "POST" and current_user.id == u_id:
+    if request.method == "POST" and str(current_user.id) == str(u_id):
         data = request.form
         name = data.get("name")
         vorname = data.get("vorname")
         password = data.get("password")
         profile_image = request.files.get("profileImage")
-
         if profile_image:
             if profile_image.filename != "" and allowed_file(profile_image.filename,
                                                           ALLOWED_IMAGE_EXTENSIONS):
                 image, image_data_type = cleanup_image(profile_image)
-                current_user.image = image
-                current_user.image_data_type = image_data_type
+                update_sql = update(User).where(User.id == u_id).values(
+                    image=image,
+                    image_data_type=image_data_type
+                )
+                db.get_engine().execute(update_sql)
+                db.session.commit()
         if name!="":
-            current_user.name=name
-        if vorname!="":
-            current_user.vorname=vorname
-        if password!="":
-            current_user.password=generate_password_hash(password, method="sha256" )
-        if re.search("^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,30}$", password) or password=="":
+            update_sql = update(User).where(User.id == u_id).values(name=name)
+            db.get_engine().execute(update_sql)
             db.session.commit()
+
+        if vorname!="":
+            update_sql = update(User).where(User.id == u_id).values(vorname=vorname)
+            db.get_engine().execute(update_sql)
+            db.session.commit()
+
+        if password!="" and re.search("^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,30}$", password):
+            update_sql = update(User).where(User.id == u_id).values(password=generate_password_hash(password, method="sha256"))
+            db.get_engine().execute(update_sql)
+            db.session.commit()
+
         else:
             # todo: currently no warning message since we removed flashs
             pass

@@ -1,0 +1,173 @@
+{% extends "base.html" %} {% block import %}
+<!-- Import Leaflet CSS before JS! -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+  crossorigin=""
+></script>
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/imports/timeline.js') }}"
+></script>
+{% endblock %}
+{% block title %}Home{% endblock %} {% block content %}
+<div id="entry_overlay" class="overlay" onclick="overlay_off()"></div>
+
+<div class="section">
+  <div id="map" class="map_div"></div>
+  <script
+    async
+    type="text/javascript"
+    src="{{ url_for('static', filename='js/map.js') }}"
+  ></script>
+  <div id="placeholder_div" style="display: None" class="flex-column">
+    {% if user.is_authenticated and user.superuser %}
+    <div class="flex-column">
+      <button class="hero-button" onclick="toggle_visibility('input_table')">
+        Edit
+      </button>
+      <form method="POST" enctype="multipart/form-data" id="location_form">
+        <div class="flex-column" id="input_table" style="display: none">
+          <table>
+            <tr>
+              <th style="font-size: 15px">Titel:</th>
+              <td style="font-size: 15px">
+                <input type="text" id="caption" name="caption" maxlength="30"/>
+              </td>
+            </tr>
+            <tr>
+              <th style="font-size: 15px">Text:</th>
+              <td style="font-size: 15px">
+                <input type="text" id="text" name="text" maxlength="500"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th style="font-size: 15px">Bild:</th>
+              <td style="font-size: 15px">
+                <input
+                  class="form-control-file"
+                  type="file"
+                  name="location_image"
+                  id="location_image"
+                />
+              </td>
+            </tr>
+          </table>
+          <button
+            id="submit"
+            type="submit"
+            class="hero-button"
+            style="margin-bottom: 0px; padding: 10px"
+          >
+            Speichern
+          </button>
+        </div>
+      </form>
+    </div>
+    {% endif %}
+
+    <h2 id="placeholder_location_title" style="margin: 20px">
+      Hier könnte ihr Titel stehen
+    </h2>
+    <p id="placeholder_text"></p>
+
+    <div id="placeholder_image_container" class="img-crop"></div>
+
+    <button class="hero-button" onclick="toggle_visibility('new_entry_div')">
+      Eintrag hinzufügen
+    </button>
+
+    <div style="display: None" id="new_entry_div">
+      <form
+        method="POST"
+        enctype="multipart/form-data"
+        class="flex-column"
+        id="entry_form"
+      >
+        <table>
+          <tr>
+            <th style="font-size: 15px">Titel:</th>
+            <td style="font-size: 15px">
+              <input
+                required="required"
+                name="entry_title"
+                type="text"
+                id="entry_title"
+                style="width: 100%; margin: 0;"
+                placeholder="Bildtitel"
+                maxlength="18"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th style="font-size: 15px">Kategorie:</th>
+            <td style="font-size: 15px">
+              <select
+                id="entry_category"
+                name="entry_category"
+                form="entry_form"
+                required="required"
+                style="width: 100%; margin: 0;"
+              >
+                <option value="" selected disabled hidden>Themenbereich</option>
+                <option value="Humangeographie">Anthroposphäre</option>
+                <option value="Vegetation">Vegetation</option>
+                <option value="Geologie">Geologie</option>
+                <option value="Agrikultur">Agrikultur</option>
+                <option value="Landschaft">Landschaft</option>
+                <option value="Personen">Personen</option>
+                <option value="Sonstiges">Sonstiges</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th style="font-size: 15px">Beschreibung:</th>
+            <td style="font-size: 15px">
+              <input
+                name="entry_text"
+                id="entry_text"
+                type="text"
+                style="width: 100%; margin: 0;"
+                placeholder="Optional: Text zum Bild"
+                maxlength="500"
+              ></input>
+            </td>
+          </tr>
+
+          <tr>
+            <th style="font-size: 15px">Bild:</th>
+            <td style="font-size: 15px">
+              <input
+                required="required"
+                class="form-control-file"
+                type="file"
+                name="entryImage"
+                id="entryImage"
+                style="width: 100%; margin: 0;"
+              />
+            </td> 
+          </tr>
+        </table>
+
+        <button id="submit_entry" type="submit">Abschicken</button>
+      </form>
+    </div>
+    <div id="entry_elements_placeholder">
+      <!--filled via js-->
+    </div>
+  </div>
+</div>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/home.js') }}"
+></script>
+
+{% endblock %}

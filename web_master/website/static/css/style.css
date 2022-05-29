@@ -1,0 +1,520 @@
+@font-face {
+  font-family: "Roboto Condensed";
+  src: url("../fonts/RobotoCondensed-Regular.ttf");
+}
+
+html {
+  min-height: 100%;
+  font-size: calc(1em * 0.625);
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+div,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hlui,
+p,
+ul,
+ol,
+li,
+img,
+label,
+input,
+select,
+blockquote,
+fieldset,
+legend,
+form {
+  margin: 0;
+  padding: 0;
+}
+
+main,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+video,
+picture {
+  display: block;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+h2 {
+  font-size: 30px;
+}
+
+body {
+  font-family: "Roboto Condensed", "Arial Narrow", Arial, Helvetica, sans-serif;
+  line-height: 24px;
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: left;
+  height: 100%;
+}
+
+.map {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  min-width: 80%;
+  min-height: 70vh;
+  z-index: 1;
+}
+
+.map_div {
+  width: 80%;
+}
+
+main {
+  position: relative;
+  min-height: 85vh;
+  top: -2vh;
+}
+
+.info {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.scale {
+  margin: 0 20%;
+}
+
+h2 {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.light_pink {
+  background-color: rgba(165, 0, 80, 0.2);
+}
+
+.section {
+  padding: 75px 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.section-small {
+  width: 50%;
+}
+
+.center {
+  align-self: center;
+  margin: 0 auto;
+}
+
+select {
+  font-weight: bold;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+footer {
+  text-align: right;
+  color: gray;
+  clear: both;
+  position: relative;
+  height: 5vh;
+}
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.card_flex_list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  align-content: space-around;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+.img_container {
+  height: 200px;
+  width: 300px;
+  align-self: left;
+}
+.card_img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.card_img_small {
+  width: 300px;
+  height: 200px;
+}
+
+.card_delete {
+  height: 4rem;
+  width: 4rem;
+  margin: 5px;
+}
+
+.card_caption {
+  font-size: 2rem;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card_item {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(165, 0, 80, 0.2);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+  cursor: pointer;
+  flex-basis: 100%;
+  flex: 1;
+  max-width: 310px;
+}
+
+.flex-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.full-width {
+  width: 100%;
+}
+
+#submit_entry {
+  background-color: #670032;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  padding-bottom: 6px;
+  padding-top: 4px;
+  width: 90px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#entry_category {
+  margin: 5px;
+}
+
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.overlay {
+  position: fixed;
+  display: none; /*default invisible*/
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.666);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fade_in:hover {
+  opacity: 1;
+}
+
+.inner_overlay {
+  width: 50%;
+  height: 90vh;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.inner_overlay h1 {
+  margin-top: 10px;
+  height: 5%;
+}
+
+.inner_overlay h2 {
+  color: #fff;
+  background-color: #670032;
+  border-radius: 8px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.idea_text {
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+
+.inner_overlay .preview_img {
+  margin: 10px auto;
+  border-radius: 10px;
+  border: 1px solid #000;
+  max-height: 60vh;
+  max-width: 100%;
+}
+
+.hero-page {
+  position: relative;
+  background-size: cover;
+  background-position: center right;
+  height: 80vh;
+  color: #fff;
+  padding: 120px 0 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
+    url("../images/Image_Tenerife_Main.jpeg");
+}
+
+.arrows-down {
+  background: url("../icons/arrows.png") bottom center no-repeat;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  height: 100px;
+  width: 40px;
+  background-size: contain;
+}
+
+.hero-button {
+  background-color: #670032;
+  border: 2px solid #fff;
+  color: white;
+  margin: 40px;
+  border-radius: 12px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.hero-button:hover {
+  filter: brightness(150%);
+}
+
+.form-field {
+  padding: 8px 10px;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  font-size: 18px;
+  border-color: #bdc7d8;
+  border-radius: 5px;
+  margin: 0;
+  margin: 10px 0;
+  resize: none;
+}
+
+footer {
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  width: 100%;
+  height: 5vh;
+  background-color: #670032;
+}
+body {
+  position: relative;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 5vh; /* Set same as footer's height */
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5vh;
+}
+
+.profile-info {
+  padding-top: 4vh;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border-top-right-radius: 30%;
+  border-bottom-right-radius: 30%;
+  height: 100%;
+  place-items: center;
+}
+.profile-info h1 {
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 950px) {
+  .profile-info {
+    width: 100%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    place-items: center;
+    height: auto;
+  }
+  .flex-switch {
+    flex-direction: column;
+  }
+}
+
+.one_thirds {
+  width: 30%;
+}
+
+.two_thirds {
+  width: 60%;
+}
+
+.profile_card_holder {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  width: 70%;
+  flex-wrap: wrap;
+  max-height: 60vh;
+}
+
+.profile_link {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: #000;
+  object-fit: cover;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 900 !important;
+}
+
+.small-button {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.img-crop,
+.img-crop img {
+  width: 100%; /* gotta be responsive these days */
+}
+.img-crop {
+  background-color: #ededed; /* some background color for short images */
+  overflow: hidden;
+  max-width: 680px;
+  /* remove white-space for inline-block elements */
+  letter-spacing: -0.31em; /* webkit */
+  *letter-spacing: normal; /* reset IE < 8 */
+  word-spacing: -0.43em; /* IE < 8 && gecko */
+}
+.img-crop:before,
+.img-crop img {
+  /* vertically center the image */
+  display: inline-block;
+  vertical-align: middle;
+}
+.img-crop:before {
+  /* pseudo element to vertically align image to */
+  content: "";
+
+  /* Magic Number */
+  /* Set this to your desired height(to width) ratio */
+  padding-top: 75%; /* % of original image width */
+}
+.img-crop img {
+  /* removes(sorta) image from the flow */
+  padding-left: 100%;
+  margin: -999em -100%;
+}

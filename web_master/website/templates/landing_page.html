@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Teneriffa Wiki{% endblock %} {% block
+content %}
+<div class="section hero-page">
+  <h1>Willkommen zur Teneriffa Karte</h1>
+  <h3 style="margin: 10px">Der interaktive Exkursionsbericht</h3>
+  <div class="flex-row">
+    {% if not user.is_authenticated %}
+    <form action="/login">
+      <button type="submit" class="hero-button">Anmelden</button>
+    </form>
+    <form action="/sign-up">
+      <button type="submit" class="hero-button">Registrieren</button>
+    </form>
+    {% else %}
+    <div class="flex-row" style="margin-top: auto">
+      <form action="/home">
+        <button type="submit" class="hero-button">Zur Karte</button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+  <h3 style="margin-top: auto; margin-bottom: 20px">
+    Scrollen für weitere Informationen
+  </h3>
+  <div class="arrows-down"></div>
+</div>
+{% endblock %}

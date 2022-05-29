@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Profil{% endblock %}
+{% block content %}
+<div id="idea_overlay" class="overlay" onclick="overlay_off()"></div>
+
+<div class="flex-row flex-switch" style="min-height: 85vh;">
+  <div class="profile-info light_pink">
+    <h1>Profil von:</h1>
+    {% if t_user.image != None %}
+      <img src="data:image/{{ t_user.image_data_type }};base64,{{ t_user.image.decode() }}" class="card_img" style="border-radius: 50%; width:200px; height:200px; object-fit: cover;">
+    {% else %}
+      <img src="../static/icons/profile.png" class="card_img" style="border-radius: 50%; width:200px; height:200px;">
+    {% endif %}
+
+    <table id="display_table">
+        <tr>
+          <th style="font-size:15px;"></th>
+        </tr>
+        <tr>
+          <th style="font-size:15px;"> Name:</th>
+          <td style="font-size:15px;">{{t_user.vorname}} {{t_user.name}}</td>
+        </tr>
+        <tr>
+            <th style="font-size:15px;"> Nutzername:</th>
+            <td style="font-size:15px;">{{t_user.username}} </td>
+        </tr>
+        {% if user.id == t_user.id %}
+        <tr>
+            <td><button id="edit" onClick="table_toggler({{ 1 }})" class="hero-button" style="margin:0px; padding: 10px;">Ändern</button></td>
+        </tr>
+        {% endif %}
+      </table>
+
+      <form method="POST" enctype="multipart/form-data">
+      <table style="display: none;" id="input_table">
+        <tr>
+            <th style="font-size:15px;"> Vorname:</th>
+            <td style="font-size:15px;"><input type="text" id="vorname" name="vorname" placeholder="{{t_user.vorname}}"></td>
+          </tr>
+        <tr>
+          <th style="font-size:15px;"> Name:</th>
+          <td style="font-size:15px;"><input type="text" id="name" name="name" placeholder="{{t_user.name}}"></td>
+        </tr>
+        <tr>
+          <th style="font-size:15px;">Profilbild:</th>
+          <td style="font-size:15px;"><input class="form-control-file" type="file" name="profileImage" id="profileImage"></td>
+      </tr>
+        <tr>
+            <th style="font-size:15px;">Passwort:</th>
+            <td style="font-size:15px;"><input type="password" id="password" name="password" placeholder="Passwort"></td>
+        </tr>
+        <tr>
+            <td><button id="change" type="reset" onClick="table_toggler({{ 0 }})" class="hero-button" style="margin:0px; padding: 10px;">Abbrechen</button></td>
+            <td><button id="submit" type="submit" onClick="table_toggler({{ 0 }})" class="hero-button" style="margin:0px; padding: 10px;">Speichern</button></td>
+        </tr>
+      </table> 
+    </form>
+
+    <script src="static/js/profile.js"></script>
+  </div>
+
+
+  <div class="profile-info two_thirds flex-column">
+    <div style="height: 50%;" class="flex-column">
+      {% if user.id == t_user.id %}
+        <h1>Hier findest du deine Uploads</h1>
+      {% else %}
+        <h1>Beiträge:</h1>
+      {% endif %}
+      <ul id="entries" class="entries profile_card_holder">
+        {% if t_user.entries != [] %}
+          {% for entry in t_user.entries %}
+              <li class="card_item" id="entry_{{ entry.id }}">
+                  <div class="card_img_container">
+                      {% if entry.image != None %}
+                      <img src="data:image/{{ entry.image_data_type }};base64,{{ entry.image.decode() }}" class="card_img_small">
+                      {% endif %}
+                  </div>
+                  <h3 class="card_caption">{{ entry.title }}</h3>
+                  {% if user.id == t_user.id %}
+
+                    <button type="button" class="card_delete" onClick="deleteTarget({{ entry.id }}, 'entry')">
+                      <span aria-hidden="true">&times;</span>
+                   </button>
+                  {% endif %}
+              </li>
+          {% endfor %}
+        {% else %}
+          <li style="color:grey; list-style: none; margin-bottom: 20%;">Wenn du welche hättest..</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+{% endblock %}
