@@ -4,7 +4,7 @@
 <div id="idea_overlay" class="overlay" onclick="overlay_off()"></div>
 
 <div class="flex-row flex-switch" style="min-height: 85vh;">
-  <div class="profile-info light_pink">
+  <div class="profile-info yellow">
     <h1>Profil von:</h1>
     {% if t_user.image != None %}
       <img src="data:image/{{ t_user.image_data_type }};base64,{{ t_user.image.decode() }}" class="card_img" style="border-radius: 50%; width:200px; height:200px; object-fit: cover;">
