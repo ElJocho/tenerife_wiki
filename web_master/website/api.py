@@ -83,11 +83,11 @@ def new_entry():
     entry_category = data.get("entry_category")
     location_id = request.args.get('l_id')
     entry_image = request.files.get("entryImage")
-
+    print("jö")
     if entry_image.filename != "" and allowed_file(entry_image.filename,
-                                                  ALLOWED_IMAGE_EXTENSIONS):
+                                                 ALLOWED_IMAGE_EXTENSIONS):
         image, image_data_type = cleanup_image(entry_image)
-
+        print("joinks")
         entry = Entry(
             title=entry_title, text=entry_text,
             category=entry_category,

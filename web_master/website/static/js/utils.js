@@ -26,7 +26,6 @@ function get_html_parameter_list(querystring) {
   params = {};
   for (var i = 0; i < pairs.length; i++) {
     pair = pairs[i].split("=");
-    console.log(pair);
     name = pair[0];
     if (name == "next") {
       continue;

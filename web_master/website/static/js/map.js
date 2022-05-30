@@ -38,7 +38,8 @@ function getColor(props) {
       return "#00008b";
     case "Soil":
       return "#663300";
-    case "Plant" || "Agro":
+    case "Agro":
+    case "Plant":
       return "#005c1a";
     case "Data":
       return "#8fa3ad";
@@ -263,6 +264,7 @@ async function all_locations() {
   }
 
   function geojsonMarkerOptions(target) {
+    console.log(target.geometry);
     return {
       radius: 8,
       color: getColor(target.geometry.category),
@@ -318,11 +320,11 @@ async function initMap() {
 
     labels = ["Stop", "Data", "Stone", "Soil", "Hydro", "Plant", "Trash"];
     let nice_name = {
-      Stone: "Geology",
+      Stone: "Geologie",
       Stop: "Autostop",
       Hydro: "Hydrologie",
       Soil: "Bodengeographie",
-      Plant: "Biologie und Agricultur",
+      Plant: "Biologie und Agrikultur",
       Data: "Datenpunkte",
       Trash: "Recyclinghof",
     };

@@ -7,21 +7,24 @@ function toggle_visibility(div) {
   }
 }
 
-location_form = document.getElementById("location_form");
-location_form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const urlParams = new URLSearchParams(window.location.search);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", `/api/edit_location?l_id=${urlParams.get("l_id")}`);
-  xhr.onload = function () {
-    location.reload();
-  };
-  var formData = new FormData(location_form);
-  xhr.send(formData);
-});
+let location_form = document.getElementById("location_form");
+if (location_form != null){
+    location_form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const urlParams = new URLSearchParams(window.location.search);
 
-entry_form = document.getElementById("entry_form");
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", `/api/edit_location?l_id=${urlParams.get("l_id")}`);
+      xhr.onload = function () {
+        location.reload();
+      };
+      var formData = new FormData(location_form);
+      xhr.send(formData);
+    });
+}
+
+let entry_form = document.getElementById("entry_form");
 entry_form.addEventListener("submit", (e) => {
   e.preventDefault();
   const urlParams = new URLSearchParams(window.location.search);
@@ -72,3 +75,5 @@ entry_form.addEventListener("submit", (e) => {
   var formData = new FormData(entry_form);
   xhr.send(formData);
 });
+
+

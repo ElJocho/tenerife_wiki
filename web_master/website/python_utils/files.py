@@ -3,7 +3,7 @@ from PIL import Image
 import io
 import base64
 
-ALLOWED_IMAGE_EXTENSIONS = ('pdf', 'png', 'jpg', 'jpeg')
+ALLOWED_IMAGE_EXTENSIONS = ('pdf', 'png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG', 'PDF')
 
 
 def allowed_file(filename: str, allowed_extensions: tuple) -> bool:

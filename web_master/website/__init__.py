@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, getenv, listdir
@@ -56,7 +58,7 @@ def create_database(app, Location, Route, Vegetation):
 def import_locations(Location, app):
     with app.app_context():
         if not Location.query.first():
-            directory = '../data/gps/pois/'
+            directory = './data/gps/pois/'
             for file in listdir(directory):
                 if file.endswith('.geojson'):
                     with open(directory + file) as f:
@@ -74,7 +76,7 @@ def import_locations(Location, app):
 def import_routes(Route, app):
     with app.app_context():
         if not Route.query.first():
-            directory = '../data/gps/tracks/'
+            directory = './data/gps/tracks/'
             for file in listdir(directory):
                 if file.endswith('.geojson'):
                     with open(directory + file) as f:
@@ -89,7 +91,7 @@ def import_routes(Route, app):
 def import_vegetation(Vegetation, app):
     with app.app_context():
         if not Vegetation.query.first():
-            directory = '../data/plants/'
+            directory = './data/plants/'
             for file in listdir(directory):
                 if file.endswith('.csv'):
                     df = pd.read_csv(directory+file, sep=';', header=0)
