@@ -94,12 +94,6 @@ main {
   top: -2vh;
 }
 
-.info {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 10px;
-}
-
 .scale {
   margin: 0 20%;
 }
@@ -109,8 +103,8 @@ h2 {
   vertical-align: middle;
 }
 
-.light_pink {
-  background-color: rgba(165, 0, 80, 0.2);
+.yellow {
+  background-color: #ffcc00;
 }
 
 .section {
@@ -215,7 +209,7 @@ footer {
 .card_item {
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(165, 0, 80, 0.2);
+  border-color: #7096af;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -247,7 +241,7 @@ footer {
 }
 
 #submit_entry {
-  background-color: #670032;
+  background-color: #014470;
   border-radius: 10px;
   color: #fff;
   text-align: center;
@@ -261,15 +255,6 @@ footer {
 
 #entry_category {
   margin: 5px;
-}
-
-.info {
-  padding: 6px 8px;
-  font: 14px/16px Arial, Helvetica, sans-serif;
-  background: white;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
 }
 
 .legend {
@@ -322,7 +307,7 @@ footer {
 
 .inner_overlay h2 {
   color: #fff;
-  background-color: #670032;
+  background-color: #014470;
   border-radius: 8px;
   padding: 5px 0;
   width: 100%;
@@ -366,7 +351,7 @@ footer {
 }
 
 .hero-button {
-  background-color: #670032;
+  background-color: #014470;
   border: 2px solid #fff;
   color: white;
   margin: 40px;
@@ -402,7 +387,7 @@ footer {
   bottom: 0;
   width: 100%;
   height: 5vh;
-  background-color: #670032;
+  background-color: #014470;
 }
 body {
   position: relative;
