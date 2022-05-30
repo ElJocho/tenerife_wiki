@@ -91,3 +91,7 @@ class Vegetation(db.Model):
     image_leaf = db.Column(db.String(500))
     image_flower = db.Column(db.String(500))
     zone = db.Column(db.String(50))
+    def serialize(self):
+        d = Serializer.serialize(self)
+        return d
+

@@ -3,7 +3,13 @@ var southWest = L.latLng(27.9, -17.1);
 var northEast = L.latLng(28.7, -15.9);
 var bounds = L.latLngBounds(southWest, northEast);
 var multiPoint = null;
+var multiPointVeggie = null;
 var routes_multiLine = null;
+
+// bools used for timeslider sync
+let location_isOn = true;
+let route_isOn = true;
+let vegetation_isOn = true;
 
 // often used elements for js manipulation:
 
@@ -48,14 +54,25 @@ function getColor(props) {
   }
 }
 
-async function get_locations() {
-  const data = await fetch("/api/get_locations");
-  let json = await data.json();
-  return json;
+function getVegetationColor(props) {
+  switch (props) {
+    case "kanarenkiefernwaelder":
+      return "#04916e";
+    case "loorbeerwald":
+      return "#45b56a";
+    case "thermophilebuschwaelder":
+      return "#18b9c4";
+    case "ziernutzpflanzen":
+      return "#ad0a67";
+    case "sukkulentenbusch":
+      return "#ffd70d";
+    case "kuestenvegetation":
+      return "#d16b04";
+  }
 }
 
-async function get_routes() {
-  const data = await fetch("/api/get_routes");
+async function get_objects(object_string) {
+  const data = await fetch(`/api/get_${object_string}`);
   let json = await data.json();
   return json;
 }
@@ -66,11 +83,16 @@ async function get_entries(l_id) {
   return json;
 }
 
-async function update_entry_div(feature) {
-  if (entry_div == null) {
+async function update_entry_div(feature, mode) {
+  if ((entry_div == null && mode != "veggie") || mode == "location") {
     entry_div = document.getElementById("placeholder_div");
     entry_div.style.display = "flex";
+  } else {
+    entry_div = document.getElementById("placeholder_div");
+    entry_div.style.display = "none";
   }
+
+  // todo: address the mode spaghetti
 
   entry_div_location_title.innerHTML = feature.caption
     ? feature.caption
@@ -82,76 +104,80 @@ async function update_entry_div(feature) {
     feature.image +
     '" class="card_img">';
   entry_div_text.innerHTML = feature.text;
-  let entries = await get_entries(feature.id);
 
-  if (entries.length == 0) {
-    entry_elements_div.style.display = "none";
-  } else {
-    entry_elements_div.style.display = "flex";
-  }
-  entry_elements_div.innerHTML = "";
-  let new_inner = "<ul id='entries' class='card_flex_list'>";
-  for (let entry of entries) {
-    new_inner += `<li class="card_item" id="entry_${entry.id}">`;
-    new_inner += '   <div class="img_container">';
-    new_inner += `     <img src="data:image/${entry.image_data_type};base64,${entry.image}" class="card_img"></img>`;
-    new_inner += "   </div>";
-    new_inner += `   <h2>${entry.title}</h2>`;
-    new_inner += `   <p>${entry.category}</p>`;
-    new_inner += "</li>";
-  }
-  new_inner += "</ul>";
-  entry_elements_div.innerHTML = new_inner;
-  for (let entry of entries) {
-    let prof_image = "";
-    if (entry.image != undefined && entry.image != null && entry.image != "") {
-      prof_image = `<img src="data:image/${
-        entry.user_image_data_type
-      };base64,${entry.user_image.slice(
-        2,
-        -1
-      )}"  onclick='window.open("/profile?u_id=${
-        entry.user_id
-      }", "_self")' class="profile_link">`;
+  if (mode == "location") {
+    let entries = await get_entries(feature.id);
+
+    if (entries.length == 0) {
+      entry_elements_div.style.display = "none";
     } else {
-      prof_image =
-        '<img src="../icons/profile.png" class="card_img" style="border-radius: 50%; width:50px; height:50px;">';
+      entry_elements_div.style.display = "flex";
     }
+    entry_elements_div.innerHTML = "";
+    let new_inner = "<ul id='entries' class='card_flex_list'>";
+    for (let entry of entries) {
+      new_inner += `<li class="card_item" id="entry_${entry.id}">`;
+      new_inner += '   <div class="img_container">';
+      new_inner += `     <img src="data:image/${entry.image_data_type};base64,${entry.image}" class="card_img"></img>`;
+      new_inner += "   </div>";
+      new_inner += `   <h2>${entry.title}</h2>`;
+      new_inner += `   <p>${entry.category}</p>`;
+      new_inner += "</li>";
+    }
+    new_inner += "</ul>";
+    entry_elements_div.innerHTML = new_inner;
 
-    document
-      .getElementById(`entry_${entry.id}`)
-      .addEventListener("click", (e) => {
-        entry_overlay.innerHTML =
-          "<div class='inner_overlay flex-column' style='justify-content: flex-start;'>" +
-          prof_image +
-          "<h1 style='margin-top: 15px;'>" +
-          entry.title +
-          "</h1>" +
-          "<div class='flex-column' style='width: 90%;'>" +
-          "<img src='data:image/" +
-          entry.image_data_type +
-          ";base64," +
-          entry.image +
-          "' class='preview_img'><p>" +
-          entry.text +
-          "</p>" +
-          "</div></div>";
-        $("#entry_overlay").show();
-        $("#entry_overlay").addClass("fade_in");
-      });
+    for (let entry of entries) {
+      let prof_image = "";
+      if (entry.user_image != null) {
+        prof_image = `<img src="data:image/${
+          entry.user_image_data_type
+        };base64,${entry.user_image.slice(
+          2,
+          -1
+        )}"  onclick='window.open("/profile?u_id=${
+          entry.user_id
+        }", "_self")' class="profile_link">`;
+      } else {
+        prof_image = `<img src="./static/icons/profile.png" class="profile_link" onclick='window.open("/profile?u_id=${entry.user_id}", "_self")'>`;
+      }
+
+      document
+        .getElementById(`entry_${entry.id}`)
+        .addEventListener("click", (e) => {
+          entry_overlay.innerHTML =
+            "<div class='inner_overlay flex-column' style='justify-content: flex-start;'>" +
+            prof_image +
+            "<h1 style='margin-top: 15px;'>" +
+            entry.title +
+            "</h1>" +
+            "<div class='flex-column' style='width: 90%;'>" +
+            "<img src='data:image/" +
+            entry.image_data_type +
+            ";base64," +
+            entry.image +
+            "' class='preview_img'><p>" +
+            entry.text +
+            "</p>" +
+            "</div></div>";
+          $("#entry_overlay").show();
+          $("#entry_overlay").addClass("fade_in");
+        });
+    }
   }
 }
 
 async function all_locations() {
-  let locations = await get_locations();
-  let routes = await get_routes();
+  let locations = await get_objects("locations");
+  let routes = await get_objects("routes");
+  let vegetation = await get_objects("vegetation");
 
-  //Setting for showing all localized ideas on the map
+  //Setting for showing all locations on the map
   var geojson = [];
   for (const location of locations) {
     let category =
       location.category != null ? location.category.split("-")[1] : null;
-    point = JSON.parse(location.geojson);
+    let point = JSON.parse(location.geojson);
     point["category"] = category;
     point["id"] = location.id;
     point["caption"] = location.caption;
@@ -162,6 +188,26 @@ async function all_locations() {
     point["day"] = location.name.split("_")[1];
     geojson.push(point);
   }
+
+  var veggieGeojson = [];
+  for (const veggie of vegetation) {
+    let point = JSON.parse(veggie.geojson);
+
+    point["category"] = veggie.zone;
+    point["id"] = veggie.id;
+    point["image_bark"] = veggie.image_bark;
+    point["image_fruit"] = veggie.image_fruit;
+    point["image_habit"] = veggie.image_habit;
+    point["image_leaf"] = veggie.image_leaf;
+    point["image_flower"] = veggie.image_flower;
+    point["current_name"] = veggie.current_name;
+    point["author"] = veggie.author;
+    point["url"] = veggie.url;
+    point["family"] = veggie.family;
+    point["day"] = parseInt(veggie.date.split(" ")[1]) - 6;
+    veggieGeojson.push(point);
+  }
+
   var routes_geojson = [];
 
   for (const route of routes) {
@@ -180,19 +226,41 @@ async function all_locations() {
 
   info.update = function (props) {
     if (props) {
+      let image = props.image_habit
+        ? props.image_habit
+        : props.image_flower
+        ? props.image_flower
+        : props.image_leaf;
+
       this._div.innerHTML =
         '<div class="flex-row"><h4>' +
-        (props.caption ? props.caption : props.name) +
+        (props.caption
+          ? props.caption
+          : props.name
+          ? props.name
+          : ` <a target="_blank" href="${props.url}">${props.current_name}</a> `) +
         "</h4>" +
         ' <button class="hero-button small-button" id="project_close" type="button" style="margin-left: auto;">x</button></div>';
-      this._div.innerHTML +=
-        '<img src="data:image/' +
-        props.image_data_type +
-        ";base64," +
-        props.image +
-        '" class="card_img card_img_small">';
+      this._div.innerHTML += props.image_data_type
+        ? '<img src="data:image/' +
+          props.image_data_type +
+          ";base64," +
+          props.image +
+          '" class="card_img card_img_small">'
+        : `<img src="${image}" class="card_img card_img_small">`;
 
       $("#project_close").on("click", (e) => {
+        multiPointVeggie.eachLayer((layer) => {
+          try {
+            multiPointVeggie.resetStyle(layer);
+          } catch (e) {}
+          layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: highlightFeature,
+          });
+        });
+
         multiPoint.eachLayer((layer) => {
           try {
             multiPoint.resetStyle(layer);
@@ -242,9 +310,24 @@ async function all_locations() {
         }
       });
 
+      multiPointVeggie.eachLayer(function (layer) {
+        layer.off("mouseout", resetHighlight);
+        layer.off("mouseover", highlightFeature);
+        if (layer != Layer) {
+          try {
+            multiPointVeggie.resetStyle(layer);
+          } catch (e) {}
+        }
+      });
+
       update_url("l_id", Layer.feature.geometry.id);
 
-      update_entry_div(Layer.feature.geometry);
+      update_entry_div(
+        Layer.feature.geometry,
+        Layer.feature.geometry.image_data_type !== undefined
+          ? "location"
+          : "veggie"
+      );
     }
   }
 
@@ -253,8 +336,13 @@ async function all_locations() {
     try {
       multiPoint.resetStyle(e.target);
     } catch (e) {}
+    try {
+      multiPointVeggie.resetStyle(e.target);
+    } catch (e) {}
     multiPoint.bringToFront();
+    multiPointVeggie.bringToFront();
   }
+
   function onEachFeature(feature, layer) {
     layer.on({
       mouseover: highlightFeature,
@@ -264,10 +352,19 @@ async function all_locations() {
   }
 
   function geojsonMarkerOptions(target) {
-    console.log(target.geometry);
     return {
       radius: 8,
       color: getColor(target.geometry.category),
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.7,
+    };
+  }
+
+  function geojsonVeggieMarkerOptions(target) {
+    return {
+      radius: 8,
+      color: getVegetationColor(target.geometry.category),
       weight: 1,
       opacity: 1,
       fillOpacity: 0.7,
@@ -291,10 +388,20 @@ async function all_locations() {
     style: geojsonMarkerOptions,
     onEachFeature: onEachFeature,
   }).addTo(map);
+
+  multiPointVeggie = L.geoJSON(veggieGeojson, {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng);
+    },
+    style: geojsonVeggieMarkerOptions,
+    onEachFeature: onEachFeature,
+  }).addTo(map);
+
   routes_multiLine = L.geoJSON(routes_geojson, { style: styleLines }).addTo(
     map
   );
   multiPoint.bringToFront();
+  multiPointVeggie.bringToFront();
 }
 
 async function initMap() {
@@ -315,10 +422,9 @@ async function initMap() {
 
   var legend = L.control({ position: "bottomright" });
 
-  legend.onAdd = function (map) {
+  legend.onAdd = () => {
     var div = L.DomUtil.create("div", "info legend");
 
-    labels = ["Stop", "Data", "Stone", "Soil", "Hydro", "Plant", "Trash"];
     let nice_name = {
       Stone: "Geologie",
       Stop: "Autostop",
@@ -328,10 +434,22 @@ async function initMap() {
       Data: "Datenpunkte",
       Trash: "Recyclinghof",
     };
+    let labels = Object.keys(nice_name);
 
-    div.innerHTML += "<strong>Kategorien</strong></br>";
+    let nice_veggie_name = {
+      kanarenkiefernwaelder: "Kanarenkiefernwald",
+      loorbeerwald: "Loorbeerwald",
+      thermophilebuschwaelder: "Thermophiler Buschwald",
+      ziernutzpflanzen: "Zier- oder Nutzpflanze",
+      sukkulentenbusch: "Sukkulentenbusch",
+      kuestenvegetation: "Küstenvegetation",
+    };
+    let veggieLabels = Object.keys(nice_veggie_name);
+
+    div.innerHTML += "<strong>Orte</strong></br></br>";
 
     // loop through our density intervals and generate a label with a colored square for each interval
+
     for (var i = 0; i < labels.length; i++) {
       div.innerHTML +=
         '<i style="background:' +
@@ -341,14 +459,26 @@ async function initMap() {
         " </br> ";
     }
 
+    div.innerHTML += "</br><strong>Vegetation</strong></br></br>";
+
+    for (var i = 0; i < veggieLabels.length; i++) {
+      div.innerHTML +=
+        '<i style="background:' +
+        getVegetationColor(veggieLabels[i]) +
+        '"></i> ' +
+        nice_veggie_name[veggieLabels[i]] +
+        " </br> ";
+    }
+
     return div;
   };
 
   legend.addTo(map);
+
   await all_locations();
 
   async function changeMap({ label, value, map }) {
-    if (multiPoint != null) {
+    if (multiPoint != null && location_isOn) {
       multiPoint.eachLayer(function (layer) {
         if (label == "Alle" || layer.feature.geometry.day == label) {
           map.addLayer(layer);
@@ -358,7 +488,17 @@ async function initMap() {
       });
     }
 
-    if (routes_multiLine != null) {
+    if (multiPointVeggie != null && vegetation_isOn) {
+      multiPointVeggie.eachLayer(function (layer) {
+        if (label == "Alle" || layer.feature.geometry.day == parseInt(label)) {
+          map.addLayer(layer);
+        } else {
+          map.removeLayer(layer);
+        }
+      });
+    }
+
+    if (routes_multiLine != null && route_isOn) {
       routes_multiLine.eachLayer(function (layer) {
         if (label == "Alle" || layer.feature.geometry.name == label) {
           map.addLayer(layer);
@@ -368,6 +508,7 @@ async function initMap() {
       });
     }
     multiPoint.bringToFront();
+    multiPointVeggie.bringToFront();
   }
 
   timelineSlider = L.control
@@ -378,6 +519,36 @@ async function initMap() {
       position: "bottomleft",
     })
     .addTo(map);
+
+  L.control
+    .layers(null, {
+      Orte: multiPoint,
+      Routen: routes_multiLine,
+      Vegetation: multiPointVeggie,
+    })
+    .addTo(map);
+
+  map.on("overlayadd", function (eventLayer) {
+    if (eventLayer.name === "Orte") {
+      location_isOn = true;
+    } else if (eventLayer.name === "Routen") {
+      route_isOn = true;
+    } else {
+      vegetation_isOn = true;
+    }
+    let label = $($(".range-labels")[0]).children(".active")[0].innerHTML;
+    changeMap({ label: label, value: null, map: map });
+  });
+
+  map.on("overlayremove", function (eventLayer) {
+    if (eventLayer.name === "Orte") {
+      location_isOn = false;
+    } else if (eventLayer.name === "Routen") {
+      route_isOn = false;
+    } else {
+      vegetation_isOn = false;
+    }
+  });
 }
 
 initMap();

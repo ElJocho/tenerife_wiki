@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.orm.attributes import set_attribute, flag_modified
 from sqlalchemy import update
 from . import db
-from .models import Location, Route, User, Entry
+from .models import Location, Route, User, Entry, Vegetation
 from .python_utils.files import allowed_file, ALLOWED_IMAGE_EXTENSIONS, cleanup_image
 
 api = Blueprint("api", __name__)
@@ -20,6 +20,11 @@ def get_locations():
 @api.route('/get_routes', methods=["GET"])
 def get_routes():
     return jsonify([route.serialize() for route in Route.query.all()])
+
+
+@api.route('/get_vegetation', methods=["GET"])
+def get_vegetation():
+    return jsonify([veggie.serialize() for veggie in Vegetation.query.all()])
 
 
 @api.route("/get_entries", methods=["GET"])
@@ -47,7 +52,7 @@ def edit_location():
     location_image = request.files.get("location_image")
     if location_image:
         if location_image.filename != "" and allowed_file(location_image.filename,
-                                                         ALLOWED_IMAGE_EXTENSIONS):
+                                                          ALLOWED_IMAGE_EXTENSIONS):
             image, image_data_type = cleanup_image(location_image)
             update_sql = update(Location).where(Location.id == location_id).values(
                 image=image,
@@ -83,11 +88,9 @@ def new_entry():
     entry_category = data.get("entry_category")
     location_id = request.args.get('l_id')
     entry_image = request.files.get("entryImage")
-    print("jö")
     if entry_image.filename != "" and allowed_file(entry_image.filename,
-                                                 ALLOWED_IMAGE_EXTENSIONS):
+                                                   ALLOWED_IMAGE_EXTENSIONS):
         image, image_data_type = cleanup_image(entry_image)
-        print("joinks")
         entry = Entry(
             title=entry_title, text=entry_text,
             category=entry_category,
