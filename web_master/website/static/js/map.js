@@ -333,12 +333,29 @@ async function all_locations() {
 
   function resetHighlight(e) {
     info.update();
-    try {
-      multiPoint.resetStyle(e.target);
-    } catch (e) {}
-    try {
-      multiPointVeggie.resetStyle(e.target);
-    } catch (e) {}
+
+    multiPointVeggie.eachLayer((layer) => {
+      try {
+        multiPointVeggie.resetStyle(layer);
+      } catch (e) {}
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: highlightFeature,
+      });
+    });
+
+    multiPoint.eachLayer((layer) => {
+      try {
+        multiPoint.resetStyle(layer);
+      } catch (e) {}
+      layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: highlightFeature,
+      });
+    });
+
     multiPoint.bringToFront();
     multiPointVeggie.bringToFront();
   }
