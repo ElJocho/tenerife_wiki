@@ -9,7 +9,7 @@ var routes_multiLine = null;
 // bools used for timeslider sync
 let location_isOn = true;
 let route_isOn = true;
-let vegetation_isOn = true;
+let vegetation_isOn = false;
 
 // often used elements for js manipulation:
 
@@ -395,7 +395,7 @@ async function all_locations() {
     },
     style: geojsonVeggieMarkerOptions,
     onEachFeature: onEachFeature,
-  }).addTo(map);
+  });
 
   routes_multiLine = L.geoJSON(routes_geojson, { style: styleLines }).addTo(
     map
@@ -520,14 +520,13 @@ async function initMap() {
     })
     .addTo(map);
 
-  L.control
+  layer_control = L.control
     .layers(null, {
       Orte: multiPoint,
       Routen: routes_multiLine,
-      Vegetation: multiPointVeggie,
     })
     .addTo(map);
-
+  layer_control.addOverlay(multiPointVeggie, "Vegetation");
   map.on("overlayadd", function (eventLayer) {
     if (eventLayer.name === "Orte") {
       location_isOn = true;
