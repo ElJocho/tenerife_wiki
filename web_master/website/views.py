@@ -25,6 +25,16 @@ def home():
     )
 
 
+@views.route('/impressum', methods=["GET"])
+def impressum():
+    return render_template(
+        "impressum.html",
+        user=current_user,
+        locations=Location.query.all(),
+        routes=Route.query.all()
+    )
+
+
 @login_required
 @views.route('/delete-entry', methods=["POST"])
 def delete_entry():
