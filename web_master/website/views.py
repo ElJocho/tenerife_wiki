@@ -29,9 +29,7 @@ def home():
 def impressum():
     return render_template(
         "impressum.html",
-        user=current_user,
-        locations=Location.query.all(),
-        routes=Route.query.all()
+        user=current_user
     )
 
 

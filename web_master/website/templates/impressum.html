@@ -1,30 +1,42 @@
-{% extends "base.html" %}
-{% block import %}<script defer type="text/javascript" src="{{ url_for('static', filename='js/sign-up.js') }}"></script>{% endblock %}
+{% extends "base.html" %} {% block import %}
+<script
+  defer
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/sign-up.js') }}"
+></script>
+{% endblock %} {% block title %}Impressum{% endblock %} {% block content %}
+<div
+  class="section yellow"
+  style="position: relative; top: -15px; text-align: center"
+>
+  <h1>Impressum</h1>
 
-{% block title %}Impressum{% endblock %}
-{% block content %}
-<div class="section yellow" style="position: relative; top: -15px;">
-
-    <h1>Impressum</h1>
-
-    <br>
-    <h3>Angaben gem&auml;&szlig; &sect; 5 TMG</h3>
-    <p>Prof. Dr. Alexander Siegmund<br />
+  <br />
+  <h3 style="margin-top: 10px">Angaben gem&auml;&szlig; &sect; 5 TMG</h3>
+  <p>
+    Prof. Dr. Alexander Siegmund<br />
     Keplerstra&szlig;e, 87<br />
-    69120 Heidelberg</p>
+    69120 Heidelberg
+  </p>
 
-    <br>
-    <h3>Kontakt</h3>
-    <p>Telefon: 06221477771<br />
-    E-Mail: siegmund@ph-heidelberg.de</p>
+  <br />
+  <h3 style="margin-top: 10px">Kontakt</h3>
+  <p>
+    Telefon: 06221477771<br />
+    E-Mail: siegmund@ph-heidelberg.de
+  </p>
 
-    <br>
-    <h3>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h3>
-    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  <br />
+  <h3 style="margin-top: 10px">
+    Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle
+  </h3>
+  <p>
+    Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor
+    einer Verbraucherschlichtungsstelle teilzunehmen.
+  </p>
 
-    <br>
-    <p>Quelle: e-recht24.de</p>
-
+  <br />
+  <p>Quelle: e-recht24.de</p>
 </div>
 
 {% endblock %}
