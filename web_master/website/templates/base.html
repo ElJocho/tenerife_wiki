@@ -49,7 +49,9 @@
           <a href="/logout" class="navlink" id="logout">Logout</a>
           {% else %}
           <a href="/login" class="navlink" id="login">Login</a>
-          <a href="/sign-up" class="navlink" id="signUp">Sign Up</a>
+          {% endif %}
+          {% if user.superuser %}
+          <a href="/sign-up" class="navlink" id="signUp">Create User</a>
           {% endif %}
           <a href="/" class="navlink" id="about">Hilfe</a>
           <a href="/impressum" class="navlink" id="impressum">Impressum</a>

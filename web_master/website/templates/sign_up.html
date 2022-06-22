@@ -4,6 +4,9 @@
 {% block title %}Sign Up{% endblock %}
 {% block content %}
 <div class="section yellow" style="position: relative; top: -15px;">
+    {% if status=="success" %}
+    <p style="color:green; margin-bottom: 20px;">Nutzer wurde erstellt</p>
+    {% endif %}
     <form method="post" id="sign-up" class="flex-column section-small">
         <h2>Erstelle ein neues Konto</h2>
         <h3>Danach kann es los gehen!</h3>
