@@ -16,6 +16,7 @@ def landing_page():
 
 
 @views.route('/home', methods=["GET", "POST"])
+@login_required
 def home():
     return render_template(
         "home.html",
