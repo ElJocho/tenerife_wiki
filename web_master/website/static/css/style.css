@@ -503,3 +503,10 @@ footer {
   padding-left: 100%;
   margin: -999em -100%;
 }
+
+.disabled {
+   filter:  brightness(50%);
+}
+.disabled:hover {
+   filter:  brightness(50%);
+}

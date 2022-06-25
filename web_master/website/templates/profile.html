@@ -46,8 +46,13 @@
           <td style="font-size:15px;"><input class="form-control-file" type="file" name="profileImage" id="profileImage"></td>
       </tr>
         <tr>
-            <th style="font-size:15px;">Passwort:</th>
-            <td style="font-size:15px;"><input type="password" id="password" name="password" placeholder="Passwort"></td>
+          <div class="flex-column">
+            <div class="flex-row">
+              <th style="font-size:15px;">Passwort:</th>
+              <td style="font-size:15px;"><input type="password" id="password" name="password" placeholder="Passwort"></td>
+            </div>
+            <p id="pw_message"></p>
+          </div>
         </tr>
         <tr>
             <td><button id="change" type="reset" onClick="table_toggler({{ 0 }})" class="hero-button" style="margin:0px; padding: 10px;">Abbrechen</button></td>
