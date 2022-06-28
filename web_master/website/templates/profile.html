@@ -20,11 +20,11 @@
           <th style="font-size:15px;"> Name:</th>
           <td style="font-size:15px;">{{t_user.vorname}} {{t_user.name}}</td>
         </tr>
+        {% if user.id == t_user.id %}
         <tr>
             <th style="font-size:15px;"> Nutzername:</th>
             <td style="font-size:15px;">{{t_user.username}} </td>
         </tr>
-        {% if user.id == t_user.id %}
         <tr>
             <td><button id="edit" onClick="table_toggler({{ 1 }})" class="hero-button" style="margin:0px; padding: 10px;">Ändern</button></td>
         </tr>
