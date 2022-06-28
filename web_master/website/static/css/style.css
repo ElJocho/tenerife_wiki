@@ -505,8 +505,13 @@ footer {
 }
 
 .disabled {
-   filter:  brightness(50%);
+  filter: brightness(50%);
 }
 .disabled:hover {
-   filter:  brightness(50%);
+  filter: brightness(50%);
+}
+
+.card_item h2 {
+  margin: 5px;
+  font-size: 25px;
 }
