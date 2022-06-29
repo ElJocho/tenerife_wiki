@@ -515,3 +515,7 @@ footer {
   margin: 5px;
   font-size: 25px;
 }
+
+#placeholder_div {
+  width: 80%;
+}
